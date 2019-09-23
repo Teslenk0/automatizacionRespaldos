@@ -56,7 +56,7 @@ If($return == 0){
 		$excepcion = $e->getMessage(); 
 		$fecha = exec("date");
 		fwrite($file, "[$fecha]Problema al enviar el archivo por SFTP" . PHP_EOL);
-		fwrite($file, "[$fecha].$excepcion" . PHP_EOL);
+		fwrite($file, "[$fecha]$excepcion" . PHP_EOL);
 		$body = $body."\nHubo un problema al enviar el archivo por SFTP -> $excepcion.";
 	}
 }

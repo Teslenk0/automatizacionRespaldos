@@ -60,7 +60,7 @@ If($return == 0){
 else{
 	$fecha = exec("date");
 	fwrite($file, "[$fecha]Finalizo con errores" . PHP_EOL);
-	$body = "No se pudo completar el respaldo de las bases de datos.";
+	$body = "No se pudo completar el respaldo de los virtual host.";
 }
 
 $fecha = exec("date");

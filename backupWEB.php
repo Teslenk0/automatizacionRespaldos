@@ -29,16 +29,16 @@ $rutaOrigen = "/home/tesla/automatizacionRespaldos/backupsWEB/$auxfile"; //en es
 $rutaDestino = "/home/tesla/backupsWEB/$auxfile"; //ruta en la que estara remotamente
 
 
-fwrite($file, "[$fecha]Importando base de datos en '$auxfile'" . PHP_EOL); //escribo en el .log
+fwrite($file, "[$fecha]Respaldando archivos WEB '$auxfile'" . PHP_EOL); //escribo en el .log
 
-$respaldo = exec("tar cvfz 'backupsWEB/$auxfile.tar.gz' '/opt/lampp/htdocs'",$output,$return); //saco el respaldo
+$respaldo = exec("tar cvfz 'backupsWEB/$auxfile' '/opt/lampp/htdocs'",$output,$return); //saco el respaldo
 
-/*
+
 If($return == 0){
 
 	$fecha = exec("date"); //vuelvo a sacar la fecha
 	fwrite($file, "[$fecha]Completado correctamente" . PHP_EOL); //escribo en el .log
-	$body = "Se realizo el respaldo de las bases de datos correctamente."; //creo el mensaje para enviar por mail posteriormente
+	$body = "Se realizo el respaldo de los virtual hosts correctamente."; //creo el mensaje para enviar por mail posteriormente
 	
 	try
 	{
@@ -72,5 +72,5 @@ if(enviarMail($body)){//mando el mail
 }else{
 	fwrite($file, "[$fecha]No se pudo enviar el mail" . PHP_EOL);
 }
-*/
+
 ?>

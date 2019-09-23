@@ -5,21 +5,21 @@ require("mail/mailer.php");
 require("SFTP/enviarArchivo.php");
 
 //DATOS SERVIDOR MYSQL
-$usuario = "usuarioMYSQL";
-$pass = "contrasenaMYSQL";
+$usuario = "root";
+$pass = "123456";
 
 //DATOS PARA REALIZAR CONEXION SFTP
 /**
  * CAMBIAR ANTES DE UTILIZAR
  */
-$usuarioSFTP = "usuarioHOST";
-$passSFTP = "passwordHOST";
-$host = "host";
+$usuarioSFTP = "tesla";
+$passSFTP = "123456";
+$host = "10.10.7.20";
 $puerto = 22; 
 
 $fecha = exec("date"); //saco la fecha del sistema
 
-$ARCHIVO_LOG = "backupBD.log"; //genero un archivo .log con el que trabajar
+$ARCHIVO_LOG = "logs/backupBD.log"; //genero un archivo .log con el que trabajar
 
 $file = fopen($ARCHIVO_LOG, "a"); //lo abro
 
@@ -29,13 +29,13 @@ $auxfile = "$fecha-backup.sql"; //genero el nombre del archivo del backup
  * ALMACENO EN VARIABLES LA RUTA DONDE ESTARAN LOS ARCHIVOS
  * CAMBIAR ANTES DE UTILIZSAR
  */
-$rutaOrigen = "/home/tesla/backup/$auxfile"; //en esta ruta esta el archivo localmente
-$rutaDestino = "/home/tesla/Escritorio/$auxfile"; //ruta en la que estara remotamente
+$rutaOrigen = "/home/tesla/automatizacionRespaldos/backupsBD/$auxfile"; //en esta ruta esta el archivo localmente
+$rutaDestino = "/home/tesla/backupsBD/$auxfile"; //ruta en la que estara remotamente
 
 
 fwrite($file, "[$fecha]Importando base de datos en '$auxfile'" . PHP_EOL); //escribo en el .log
 
-$respaldo = exec("mysqldump --user=$usuario --password=$pass --all-databases > '$auxfile'",$output,$return); //saco el respaldo
+$respaldo = exec("mysqldump --user=$usuario --password=$pass --all-databases > 'backupsBD/$auxfile'",$output,$return); //saco el respaldo
 
 If($return == 0){
 
